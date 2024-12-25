@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: Agate
+  datasource:
+    url: jdbc:postgresql://localhost:5432/Agate
+    username: agate
+    password: agate123
+server:
+    port: 8080
