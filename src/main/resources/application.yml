@@ -5,5 +5,9 @@ spring:
     url: jdbc:postgresql://localhost:5432/Agate
     username: agate
     password: agate123
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
 server:
     port: 8080
