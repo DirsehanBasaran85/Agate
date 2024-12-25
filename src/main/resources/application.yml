@@ -3,8 +3,8 @@ spring:
     name: Agate
   datasource:
     url: jdbc:postgresql://localhost:5432/Agate
-    username: agate
-    password: agate123
+    username: dirsehan
+    password: 123
   jpa:
     hibernate:
       ddl-auto: create-drop
