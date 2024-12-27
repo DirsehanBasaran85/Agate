@@ -30,6 +30,11 @@ public class ClientController {
         clientService.updateClient(id, client);
     }
 
+    @PutMapping("by/{name}")
+    public void updateByName(@PathVariable("name") String name, @RequestBody Client client) {
+        clientService.updateByName(name, client);
+    }
+
     @GetMapping()
     public List<Client> getAllClients(){
         return clientService.findAllClients();
@@ -40,7 +45,14 @@ public class ClientController {
         return clientService.findClientById(id);
     }
 
+    @DeleteMapping()
+    public void deleteClients() {
+        clientService.deleteClients();
+    }
 
-
+    @DeleteMapping("{id}")
+    public void deleteClient(@PathVariable ("id") int id) {
+        clientService.deleteClient(id);
+    }
 
 }

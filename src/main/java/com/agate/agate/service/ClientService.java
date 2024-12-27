@@ -12,9 +12,13 @@ public interface ClientService {
 
     void updateClient(int id, Client client);
 
+    void updateByName(String name, Client client);
+
     List<Client> findAllClients();
 
     Optional<Client> findClientById(int id);
 
+    void deleteClients();
 
+    void deleteClient(int id);
 }

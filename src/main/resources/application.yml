@@ -2,12 +2,12 @@ spring:
   application:
     name: Agate
   datasource:
-    url: jdbc:postgresql://localhost:5432/Agate
-    username: dirsehan
-    password: 123
+    url: jdbc:postgresql://localhost:5432/agate
+    username: youruser
+    password: yourpassword
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
 server:
     port: 8080

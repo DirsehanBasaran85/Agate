@@ -3,6 +3,7 @@ package com.agate.agate.service.impl;
 import com.agate.agate.repository.ClientRepository;
 import com.agate.agate.repository.Entity.Client;
 import com.agate.agate.service.ClientService;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,15 +20,11 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void setClient(Client client) {
-
         clientRepository.save(client);
-
-
-
-
     }
 
     @Override
+    @Transactional
     public void updateClient(int id, Client client) {
         clientRepository.findById(id).ifPresent(client1 -> {
             client1.setName(client.getName());
@@ -36,6 +33,17 @@ public class ClientServiceImpl implements ClientService {
             clientRepository.save(client1);
         });
     }
+
+    @Override
+    public void updateByName(String name, Client client) {
+        clientRepository.findByName(name).ifPresent(client1 -> {
+            client1.setName(client.getName());
+            client1.setAddress(client.getAddress());
+            client1.setContactInformation((client.getContactInformation()));
+            clientRepository.save(client1);
+        });
+    }
+
 
     @Override
     public List<Client> findAllClients() {
@@ -48,4 +56,15 @@ public class ClientServiceImpl implements ClientService {
             return clientRepository.findById(id);
         else return Optional.empty();
     }
+
+    @Override
+    public void deleteClients() {
+        clientRepository.deleteAll();
+    }
+
+    @Override
+    public void deleteClient(int id) {
+        clientRepository.deleteById(id);
+    }
+
 }
