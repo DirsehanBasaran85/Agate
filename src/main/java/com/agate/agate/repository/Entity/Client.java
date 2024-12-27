@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -23,6 +25,17 @@ public class Client {
     private String address;
 
     private String contactInformation;
+
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(name = "client_campaign",joinColumns = @JoinColumn(name = "client_id"), inverseJoinColumns = @JoinColumn(name = "campaign_id"))
+    @JsonIgnore
+    private List<Client> campaign;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "staff_id")
+    @JsonIgnore
+    private Staff staff;
 
     public int getClientId() {
         return clientId;
@@ -54,6 +67,22 @@ public class Client {
 
     public void setContactInformation(String contactInformation) {
         this.contactInformation = contactInformation;
+    }
+
+    public List<Client> getCampaign() {
+        return campaign;
+    }
+
+    public void setCampaign(List<Client> campaign) {
+        this.campaign = campaign;
+    }
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
     }
 }
 
