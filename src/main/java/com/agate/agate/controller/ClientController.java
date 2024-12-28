@@ -35,6 +35,11 @@ public class ClientController {
         clientService.updateByName(name, client);
     }
 
+    @PutMapping("{cid}/{campaignid}")
+    public void assignCampaign(@PathVariable("cid") int clientId, @PathVariable("campaignid") int campaignId){
+        clientService.assignCampaign(clientId, campaignId);
+    }
+
     @GetMapping()
     public List<Client> getAllClients(){
         return clientService.findAllClients();

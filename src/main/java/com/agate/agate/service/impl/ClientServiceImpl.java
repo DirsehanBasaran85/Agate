@@ -1,11 +1,14 @@
 package com.agate.agate.service.impl;
 
+import com.agate.agate.repository.CampaignRepository;
 import com.agate.agate.repository.ClientRepository;
+import com.agate.agate.repository.Entity.Campaign;
 import com.agate.agate.repository.Entity.Client;
 import com.agate.agate.service.ClientService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,9 +16,11 @@ import java.util.Optional;
 public class ClientServiceImpl implements ClientService {
 
     ClientRepository clientRepository;
+    CampaignRepository campaignRepository;
 
-    public ClientServiceImpl(ClientRepository clientRepository){
+    public ClientServiceImpl(ClientRepository clientRepository, CampaignRepository campaignRepository){
         this.clientRepository = clientRepository;
+        this.campaignRepository = campaignRepository;
     }
 
     @Override
@@ -41,6 +46,18 @@ public class ClientServiceImpl implements ClientService {
             client1.setAddress(client.getAddress());
             client1.setContactInformation((client.getContactInformation()));
             clientRepository.save(client1);
+        });
+    }
+
+    @Override
+    public void assignCampaign(int clientId, int campaignId) {
+        clientRepository.findById(campaignId).ifPresent(client -> {
+            campaignRepository.findById(campaignId).ifPresent(campaign -> {
+                List<Campaign> campaignList = new ArrayList<>();
+                campaignList.add(campaign);
+                client.setCampaign(campaignList);
+                campaignRepository.save(campaign);
+            });
         });
     }
 

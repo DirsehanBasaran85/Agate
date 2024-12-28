@@ -14,6 +14,8 @@ public interface ClientService {
 
     void updateByName(String name, Client client);
 
+    void assignCampaign(int clientId, int campaignId);
+
     List<Client> findAllClients();
 
     Optional<Client> findClientById(int id);

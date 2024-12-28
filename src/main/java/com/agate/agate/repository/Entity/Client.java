@@ -30,7 +30,7 @@ public class Client {
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "client_campaign",joinColumns = @JoinColumn(name = "client_id"), inverseJoinColumns = @JoinColumn(name = "campaign_id"))
     @JsonIgnore
-    private List<Client> campaign;
+    private List<Campaign> campaign;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "staff_id")
@@ -69,11 +69,11 @@ public class Client {
         this.contactInformation = contactInformation;
     }
 
-    public List<Client> getCampaign() {
+    public List<Campaign> getCampaign() {
         return campaign;
     }
 
-    public void setCampaign(List<Client> campaign) {
+    public void setCampaign(List<Campaign> campaign) {
         this.campaign = campaign;
     }
 
