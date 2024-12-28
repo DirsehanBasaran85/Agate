@@ -36,6 +36,13 @@ public class CampaignController {
 
     }
 
+    @PutMapping("{campaignid}/{staffid}")
+    public void assignManager(@PathVariable("campaignid") int campaignId,@PathVariable("staffid") int staffId){
+
+        campaignService.assignManager(campaignId,staffId);
+
+    }
+
     @GetMapping()
     public List<Campaign> getAllCampaigns() {
 

@@ -4,6 +4,7 @@ import com.agate.agate.repository.CampaignRepository;
 import com.agate.agate.repository.Entity.Campaign;
 
 import com.agate.agate.repository.Entity.Client;
+import com.agate.agate.repository.StaffRepository;
 import com.agate.agate.service.CampaignService;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +14,13 @@ import java.util.Optional;
 @Service
 public class CampaignServiceImpl implements CampaignService {
 
-    CampaignRepository campaignRepository;
+    private final StaffRepository staffRepository;
+    private final CampaignRepository campaignRepository;
 
-    public CampaignServiceImpl(CampaignRepository campaignRepository) {
+    public CampaignServiceImpl(CampaignRepository campaignRepository, StaffRepository staffRepository) {
 
         this.campaignRepository = campaignRepository;
-
+        this.staffRepository = staffRepository;
     }
 
     @Override
@@ -42,6 +44,19 @@ public class CampaignServiceImpl implements CampaignService {
             campaign1.setStateOfCompletion(campaign.getStateOfCompletion());
             campaignRepository.save(campaign1);
         });
+    }
+
+    @Override
+    public void assignManager(int campaignId, int managerId) {
+
+        campaignRepository.findById(campaignId).ifPresent(campaign1 -> {
+
+            if(staffRepository.findById(managerId).isPresent())
+                campaign1.setManager(staffRepository.findById(managerId).get());
+            campaignRepository.save(campaign1);
+
+        });
+
     }
 
     @Override

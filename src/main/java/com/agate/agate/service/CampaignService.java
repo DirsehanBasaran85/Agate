@@ -12,6 +12,8 @@ public interface CampaignService {
 
     void updateCampaign(int id, Campaign campaign);
 
+    void assignManager(int campaignId, int managerId);
+
     List<Campaign> findAllCampaigns();
 
     Optional<Campaign> findCampaignById(int id);
