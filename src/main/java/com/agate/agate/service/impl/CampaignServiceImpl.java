@@ -3,7 +3,6 @@ package com.agate.agate.service.impl;
 import com.agate.agate.repository.CampaignRepository;
 import com.agate.agate.repository.Entity.Campaign;
 
-import com.agate.agate.repository.Entity.Client;
 import com.agate.agate.repository.StaffRepository;
 import com.agate.agate.service.CampaignService;
 import org.springframework.stereotype.Service;
@@ -33,9 +32,6 @@ public class CampaignServiceImpl implements CampaignService {
 
         campaignRepository.findById(id).ifPresent(campaign1 -> {
             campaign1.setTitle(campaign.getTitle());
-            //campaign1.setClient(campaign.getClient());
-            //campaign1.setStaff(campaign.getStaff());
-            //campaign1.setManager(campaign.getManager());
             campaign1.setStartDate(campaign.getStartDate());
             campaign1.setEndDate(campaign.getEndDate());
             campaign1.setActualCost(campaign.getActualCost());
