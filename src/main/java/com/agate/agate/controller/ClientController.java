@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("Client")
-@Tag(name = "clients", description = "For Clients")
+@Tag(name = "Clients", description = "For Clients")
 public class ClientController {
 
     ClientService clientService;
