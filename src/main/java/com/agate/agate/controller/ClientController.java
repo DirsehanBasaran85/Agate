@@ -1,6 +1,7 @@
 package com.agate.agate.controller;
 
 import com.agate.agate.repository.Entity.Client;
+import com.agate.agate.repository.record.client.CreateClient;
 import com.agate.agate.service.ClientService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,8 @@ public class ClientController {
     }
 
     @PostMapping()
-    public void addClient(@RequestBody Client client ){
+    public void addClient(@RequestBody CreateClient createClient ){
+        Client client = Client.fromCreate(createClient);
         clientService.setClient(client);
 
     }

@@ -1,5 +1,7 @@
 package com.agate.agate.repository.Entity;
 
+import com.agate.agate.repository.record.staff.CreateStaff;
+import com.agate.agate.repository.record.staff.UpdateStaff;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -49,6 +51,28 @@ public class Staff {
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonBackReference
     private List<Campaign> campaign;
+
+    public static Staff fromCreate(CreateStaff createStaff){
+        Staff staff = new Staff();
+        staff.setFirstName(createStaff.staffName());
+        staff.setMiddleName(createStaff.staffMidName());
+        staff.setLastName(createStaff.staffSurname());
+        staff.setAge(createStaff.age());
+        staff.setGender(createStaff.gender());
+        staff.setPosition(createStaff.position());
+        return staff;
+    }
+
+    public static Staff fromUpdate(UpdateStaff updateStaff){
+        Staff staff = new Staff();
+        staff.setFirstName(updateStaff.staffName());
+        staff.setMiddleName(updateStaff.staffMidName());
+        staff.setLastName(updateStaff.staffSurname());
+        staff.setAge(updateStaff.age());
+        staff.setGender(updateStaff.gender());
+        staff.setPosition(updateStaff.position());
+        return staff;
+    }
 
     public String getFirstName() {
         return firstName;

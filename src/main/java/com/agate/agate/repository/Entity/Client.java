@@ -1,6 +1,7 @@
 
 package com.agate.agate.repository.Entity;
 
+import com.agate.agate.repository.record.client.CreateClient;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -36,6 +37,14 @@ public class Client {
     @JoinColumn(name = "staff_id")
     @JsonIgnore
     private Staff staff;
+
+    public static Client fromCreate(CreateClient createClient){
+        Client client = new Client();
+        client.setName(createClient.name());
+        client.setAddress(createClient.address());
+        client.setContactInformation(createClient.contactInformation());
+        return client;
+    }
 
     public int getClientId() {
         return clientId;

@@ -1,6 +1,8 @@
 package com.agate.agate.controller;
 
 import com.agate.agate.repository.Entity.Staff;
+import com.agate.agate.repository.record.staff.CreateStaff;
+import com.agate.agate.repository.record.staff.UpdateStaff;
 import com.agate.agate.service.StaffService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +22,14 @@ public class StaffController {
     }
 
     @PostMapping()
-    public void addStaff(@RequestBody Staff staff){
+    public void addStaff(@RequestBody CreateStaff createStaff){
+        Staff staff = Staff.fromCreate(createStaff);
         staffService.setStaff(staff);
     }
 
     @PutMapping("{id}")
-    public void updateStaff(@PathVariable("id") int id, @RequestBody Staff staff){
+    public void updateStaff(@PathVariable("id") int id, @RequestBody UpdateStaff updateStaff){
+        Staff staff = Staff.fromUpdate(updateStaff);
         staffService.updateStaff(id, staff);
     }
 
