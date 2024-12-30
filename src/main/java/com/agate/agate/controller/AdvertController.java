@@ -1,7 +1,6 @@
 package com.agate.agate.controller;
 
 import com.agate.agate.repository.Entity.Advert;
-import com.agate.agate.repository.Entity.Campaign;
 import com.agate.agate.service.AdvertService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
@@ -27,10 +26,15 @@ public class AdvertController {
     }
 
     @PutMapping("{id}")
-    public void updateCampaign(@PathVariable("id") int id, Advert advert) {
+    public void updateAdvert(@PathVariable("id") int id, Advert advert) {
 
         advertService.updateAdvert(id, advert);
 
+    }
+
+    @PutMapping("by/{id}")
+    public void setCompletion(@PathVariable("id") int id, String completion) {
+        advertService.setCompletion(id, completion);
     }
 
     @GetMapping()

@@ -13,6 +13,8 @@ public interface AdvertService {
 
     void updateAdvert(int id, Advert advert);
 
+    void setCompletion(int id, String completion);
+
     List<Advert> findAllAdverts();
 
     Optional<Advert> findAdvertById(int id);

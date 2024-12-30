@@ -33,6 +33,16 @@ public class AdvertServiceImpl implements AdvertService {
     }
 
     @Override
+    public void setCompletion(int id, String completion) {
+
+        advertRepository.findById(id).ifPresent(advert1 -> {
+            advert1.setRecordCompletion(completion);
+            advertRepository.save(advert1);
+        });
+
+    }
+
+    @Override
     public List<Advert> findAllAdverts() {
         return advertRepository.findAll();
     }
