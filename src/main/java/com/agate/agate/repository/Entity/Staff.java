@@ -52,6 +52,11 @@ public class Staff {
     @JsonBackReference
     private List<Campaign> campaign;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "Staff", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
+    private List<ConceptNotes> conceptNotes;
+
     public static Staff fromCreate(CreateStaff createStaff){
         Staff staff = new Staff();
         staff.setFirstName(createStaff.staffName());
