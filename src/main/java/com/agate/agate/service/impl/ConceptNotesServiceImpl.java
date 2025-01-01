@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class ConceptNotesServiceImpl  implements ConceptNotesService {
 
-    private final ClientRepository clientRepository;
+    ClientRepository clientRepository;
     ConceptNotesRepository conceptNotesRepository;
     StaffRepository staffRepository;
 

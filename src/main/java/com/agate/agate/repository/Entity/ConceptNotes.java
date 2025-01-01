@@ -40,5 +40,15 @@ public class ConceptNotes {
 
     public void setNotes(String notes) {this.notes = notes;}
 
+    public void setConceptNotesId(int conceptNotesId) {
+        this.conceptNotesId = conceptNotesId;
+    }
 
+    public Staff getStaff() {
+        return Staff;
+    }
+
+    public void setStaff(Staff staff) {
+        Staff = staff;
+    }
 }
