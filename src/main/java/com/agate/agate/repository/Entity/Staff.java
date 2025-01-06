@@ -22,7 +22,7 @@ public class Staff {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
+    //@JsonIgnore
     private int staffId;
 
     private String firstName;
@@ -53,7 +53,7 @@ public class Staff {
     private List<Campaign> campaign;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "Staff", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "staff", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonBackReference
     private List<ConceptNotes> conceptNotes;
 

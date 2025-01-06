@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name="conceptNotes")
+@Table(name="concept_notes")
 public class ConceptNotes {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,7 +26,7 @@ public class ConceptNotes {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "staff_id")
-    private Staff Staff;
+    private Staff staff;
 
     public int getConceptNotesId() {return conceptNotesId;}
 
@@ -45,10 +45,10 @@ public class ConceptNotes {
     }
 
     public Staff getStaff() {
-        return Staff;
+        return staff;
     }
 
     public void setStaff(Staff staff) {
-        Staff = staff;
+        staff = staff;
     }
 }

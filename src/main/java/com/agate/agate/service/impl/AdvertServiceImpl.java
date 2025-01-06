@@ -1,6 +1,7 @@
 package com.agate.agate.service.impl;
 
 import com.agate.agate.repository.AdvertRepository;
+import com.agate.agate.repository.CampaignRepository;
 import com.agate.agate.repository.Entity.Advert;
 import com.agate.agate.service.AdvertService;
 import org.springframework.stereotype.Service;
@@ -12,13 +13,19 @@ import java.util.Optional;
 public class AdvertServiceImpl implements AdvertService {
 
     AdvertRepository advertRepository;
+    CampaignRepository campaignRepository;
 
-    public AdvertServiceImpl(AdvertRepository advertRepository){
+    public AdvertServiceImpl(AdvertRepository advertRepository, CampaignRepository campaignRepository){
         this.advertRepository = advertRepository;
+        this.campaignRepository = campaignRepository;
     }
 
     @Override
-    public void setAdvert(Advert advert) {
+    public void setAdvert(Advert advert, int campaignid) {
+        campaignRepository.findById(campaignid).ifPresent(campaign -> {
+            advert.setCampaign(campaign);
+            advertRepository.save(advert);
+        });
         advertRepository.save(advert);
     }
 

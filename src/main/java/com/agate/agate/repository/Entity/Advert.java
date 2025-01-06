@@ -29,6 +29,11 @@ public class Advert {
 
     private String recordCompletion;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn
+    @JsonIgnore
+    private Campaign campaign;
+
     public int getAdvertId() {
         return advertId;
     }
@@ -59,5 +64,13 @@ public class Advert {
 
     public void setRecordCompletion(String recordCompletion) {
         this.recordCompletion = recordCompletion;
+    }
+
+    public Campaign getCampaign() {
+        return campaign;
+    }
+
+    public void setCampaign(Campaign campaign) {
+        this.campaign = campaign;
     }
 }

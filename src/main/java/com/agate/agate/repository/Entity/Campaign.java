@@ -20,7 +20,7 @@ public class Campaign {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
+    //@JsonIgnore
     private int campaignId;
 
     private String title;
@@ -37,8 +37,12 @@ public class Campaign {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "manager_id")
-    @JsonIgnore
+    //@JsonIgnore
     private Staff manager;
+
+    @OneToMany(mappedBy = "campaign", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Advert> advert;
 
     private Date startDate;
 

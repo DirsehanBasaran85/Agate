@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface AdvertService {
 
-    void setAdvert(Advert advert);
+    void setAdvert(Advert advert, int campaignid);
 
     void updateAdvert(int id, Advert advert);
 

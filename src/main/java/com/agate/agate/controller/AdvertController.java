@@ -18,22 +18,22 @@ public class AdvertController {
 
     public AdvertController(AdvertService advertService) {this.advertService = advertService;}
 
-    @PostMapping
-    public void addAdvert(@RequestBody Advert advert) {
+    @PostMapping("{campaignid}")
+    public void addAdvert(@RequestBody Advert advert, @PathVariable("campaignid") int campaignid) {
 
-        advertService.setAdvert(advert);
+        advertService.setAdvert(advert, campaignid);
 
     }
 
     @PutMapping("{id}")
-    public void updateAdvert(@PathVariable("id") int id, Advert advert) {
+    public void updateAdvert(@PathVariable("id") int id,@RequestBody Advert advert) {
 
         advertService.updateAdvert(id, advert);
 
     }
 
-    @PutMapping("by/{id}")
-    public void setCompletion(@PathVariable("id") int id, String completion) {
+    @PutMapping("by/{id}/to/{stateofcompletion}")
+    public void setCompletion(@PathVariable("id") int id,@PathVariable("stateofcompletion") String completion) {
         advertService.setCompletion(id, completion);
     }
 
